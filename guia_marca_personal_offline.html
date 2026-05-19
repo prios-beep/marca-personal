@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Marca Personal</title>
+<style>
+  /* Offline-safe font stack */
+  .font-display { font-family: 'Syne', 'SF Pro Display', 'Segoe UI', system-ui, sans-serif; }
+</style>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0C0C0E;
+    --bg2: #141416;
+    --bg3: #1C1C20;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #F0EFE8;
+    --text2: #9B9A94;
+    --text3: #5C5B56;
+    --accent: #E8D5A3;
+    --accent2: #C4A96B;
+    --green: #4CAF7D;
+    --green-bg: rgba(76,175,125,0.08);
+    --red: #E07070;
+    --red-bg: rgba(224,112,112,0.08);
+    --blue: #7EB8D4;
+    --blue-bg: rgba(126,184,212,0.08);
+    --yellow: #E8C87A;
+    --yellow-bg: rgba(232,200,122,0.08);
+    --purple: #B8A4E0;
+    --purple-bg: rgba(184,164,224,0.08);
+  }
+
+  body {
+    font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* LAYOUT */
+  .shell { display: flex; min-height: 100vh; }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-brand {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand-tag {
+    font-family: 'SF Pro Display', -apple-system, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif; font-weight: 800;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .brand-name {
+    font-family: 'SF Pro Display', -apple-system, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif; font-weight: 800;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .nav { padding: 16px 12px; flex: 1; }
+
+  .nav-section { margin-bottom: 24px; }
+
+  .nav-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    color: var(--text3);
+    text-transform: uppercase;
+    padding: 0 12px;
+    margin-bottom: 6px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text2);
+    font-weight: 400;
+    transition: all .15s;
+    border: 1px solid transparent;
+  }
+
+  .nav-item:hover { background: var(--bg3); color: var(--text); }
+
+  .nav-item.active {
+    background: var(--bg3);
+    color: var(--accent);
+    border-color: var(--border2);
+    font-weight: 500;
+  }
+
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* MAIN */
+  .main { flex: 1; overflow-y: auto; }
+
+  .page { display: none; padding: 48px 56px; max-width: 820px; }
+  .page.active { display: block; }
+
+  .page-header { margin-bottom: 40px; }
+
+  .page-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .page-title {
+    font-family: 'SF Pro Display', -apple-system, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif; font-weight: 800;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .page-desc {
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-family: 'SF Pro Display', -apple-system, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif; font-weight: 800;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 8px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all .15s;
+  }
+
+  .check-item:hover { border-color: var(--border2); }
+  .check-item.checked { opacity: .55; }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid var(--border2);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .15s;
+    background: transparent;
+  }
+
+  .check-item.checked .check-box {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .check-mark {
+    font-size: 11px;
+    color: #0C0C0E;
+    font-weight: 700;
+    display: none;
+  }
+
+  .check-item.checked .check-mark { display: block; }
+
+  .check-text {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.55;
+    flex: 1;
+  }
+
+  .check-item.checked .check-text {
+    text-decoration: line-through;
+    color: var(--text3);
+  }
+
+  .check-bold { font-weight: 500; }
+
+  /* RULE BLOCKS */
+  .rule-block {
+    border-left: 2px solid var(--accent2);
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    background: rgba(232,213,163,0.04);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .rule-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .rule-body {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+
+  /* DO / DONT */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .do-box {
+    background: var(--green-bg);
+    border: 1px solid rgba(76,175,125,0.2);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .dont-box {
+    background: var(--red-bg);
+    border: 1px solid rgba(224,112,112,0.2);
+    border-radius: 8px;
+    padding: 14px;
+  }
+
+  .box-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .do-label { color: var(--green); }
+  .dont-label { color: var(--red); }
+
+  .box-item {
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 4px;
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  .do-item { color: rgba(76,175,125,0.9); }
+  .dont-item { color: rgba(224,112,112,0.9); }
+
+  .box-bullet { flex-shrink: 0; margin-top: 2px; }
+
+  /* ALERT */
+  .alert {
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.65;
+    margin: 14px 0;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .alert-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+  .alert-warn {
+    background: var(--yellow-bg);
+    border: 1px solid rgba(232,200,122,0.2);
+    color: var(--yellow);
+  }
+
+  .alert-info {
+    background: var(--blue-bg);
+    border: 1px solid rgba(126,184,212,0.2);
+    color: var(--blue);
+  }
+
+  .alert-key {
+    background: var(--purple-bg);
+    border: 1px solid rgba(184,164,224,0.2);
+    color: var(--purple);
+  }
+
+  /* SCRIPT */
+  .script-block {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 12px;
+  }
+
+  .script-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .script-text {
+    font-size: 13px;
+    color: var(--accent);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .script-note {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 6px;
+    font-style: normal;
+  }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    margin-top: 8px;
+    background: var(--bg3);
+    border-radius: 4px;
+    height: 3px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--green);
+    border-radius: 4px;
+    transition: width .3s;
+  }
+
+  .progress-label {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 5px;
+  }
+
+  /* VALOR CARDS */
+  .valor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .valor-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .valor-name {
+    font-family: 'SF Pro Display', -apple-system, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif; font-weight: 800;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .valor-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* RESET BUTTON */
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    font-size: 11px;
+    font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all .15s;
+  }
+
+  .reset-btn:hover { border-color: var(--border2); color: var(--text); }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 28px 0;
+  }
+
+  .section-heading {
+    font-family: 'SF Pro Display', -apple-system, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif; font-weight: 800;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  /* ARCHETYPE HERO */
+  .archetype-hero {
+    background: linear-gradient(135deg, rgba(232,213,163,0.06) 0%, rgba(184,164,224,0.04) 100%);
+    border: 1px solid rgba(232,213,163,0.15);
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+
+  .arch-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .arch-name {
+    font-family: 'SF Pro Display', -apple-system, 'Segoe UI Variable Display', 'Segoe UI', system-ui, sans-serif; font-weight: 800;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .arch-desc {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* NARRATIVE BLOCKS */
+  .narrative-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+  }
+
+  .nar-version {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .nar-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .nar-note {
+    font-size: 11px;
+    color: var(--accent2);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* PLATFORM BADGE */
+  .plat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  @media (max-width: 720px) {
+    .sidebar { width: 220px; }
+    .page { padding: 32px 24px; }
+    .do-dont { grid-template-columns: 1fr; }
+    .valor-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" aria-label="Secciones de la guía">
+    <div class="sidebar-brand">
+      <div class="brand-tag">Marca Personal</div>
+      <div class="brand-name">Tu Guía de<br>Referencia</div>
+    </div>
+    <div class="nav">
+      <div class="nav-section">
+        <div class="nav-label">Fundación</div>
+        <div class="nav-item active" onclick="showPage('identidad')">
+          <div class="nav-dot" style="background:#E8D5A3"></div>
+          Identidad y arquetipo
+        </div>
+        <div class="nav-item" onclick="showPage('valores')">
+          <div class="nav-dot" style="background:#B8A4E0"></div>
+          Valores y comportamiento
+        </div>
+        <div class="nav-item" onclick="showPage('narrativa')">
+          <div class="nav-dot" style="background:#7EB8D4"></div>
+          Narrativa y frases clave
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Interacciones</div>
+        <div class="nav-item" onclick="showPage('reunion')">
+          <div class="nav-dot" style="background:#4CAF7D"></div>
+          Reunión de negocios
+        </div>
+        <div class="nav-item" onclick="showPage('concierto')">
+          <div class="nav-dot" style="background:#E8C87A"></div>
+          Conciertos y eventos cultura
+        </div>
+        <div class="nav-item" onclick="showPage('startup')">
+          <div class="nav-dot" style="background:#7EB8D4"></div>
+          Eventos de startups
+        </div>
+        <div class="nav-item" onclick="showPage('informal')">
+          <div class="nav-dot" style="background:#E07070"></div>
+          Encuentros informales
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Presencia digital</div>
+        <div class="nav-item" onclick="showPage('linkedin')">
+          <div class="nav-dot" style="background:#7EB8D4"></div>
+          LinkedIn
+        </div>
+        <div class="nav-item" onclick="showPage('instagram')">
+          <div class="nav-dot" style="background:#B8A4E0"></div>
+          Instagram
+        </div>
+        <div class="nav-item" onclick="showPage('tiktok')">
+          <div class="nav-dot" style="background:#E07070"></div>
+          TikTok
+        </div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Mentalidad</div>
+        <div class="nav-item" onclick="showPage('mentalidad')">
+          <div class="nav-dot" style="background:#E8D5A3"></div>
+          Principios y mentalidad
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- IDENTIDAD -->
+    <div class="page active" id="page-identidad">
+      <div class="page-header">
+        <div class="page-tag">Fundación</div>
+        <h1 class="page-title">Identidad y arquetipo</h1>
+        <p class="page-desc">Quién eres, desde dónde hablas y qué te hace irrepetible. Todo lo demás se deriva de aquí.</p>
+      </div>
+
+      <div class="archetype-hero">
+        <div class="arch-label">Tu arquetipo</div>
+        <div class="arch-name">El constructor de ecosistemas</div>
+        <div class="arch-desc">No eres el artista ni el ejecutivo tradicional. Eres quien une mundos, levanta estructuras y hace que otros prosperen dentro de ellas. Operas en la intersección donde el venture capital aún no sabe mirar: la economía creativa latinoamericana.</div>
+      </div>
+
+      <div class="section-heading">Tu posicionamiento único</div>
+      <div class="rule-block">
+        <div class="rule-title">Frase de posicionamiento</div>
+        <div class="rule-body">El emprendedor que construye en la intersección de dos mundos que raramente se hablan: el ecosistema startup y la economía creativa. Dropout con resultados reales en ambos lados de esa mesa.</div>
+      </div>
+
+      <div class="section-divider"></div>
+      <div class="section-heading">Tus tres diferenciadores irrepetibles</div>
+
+      <div class="card">
+        <div class="card-title">Acceso bidireccional</div>
+        <div class="card-desc">Puedes estar en una sala con un CEO de startup y en otra con un A&R de Warner. Ese arbitraje de dos ecosistemas que raramente se cruzan no se compra ni se replica fácilmente.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Credibilidad ganada, no comprada</div>
+        <div class="card-desc">Founders Live Bogotá, 250k USD en premios a startups, Warner + UMPG, festival de 2,000 personas en primera edición. Ninguno de esos resultados se compra con dinero ni con título. Eso es track record en dos industrias.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Perspectiva de fundador que falló y volvió</div>
+        <div class="card-desc">La startup de EPP en Palo Alto que no levantó capital es uno de tus activos más subestimados. Los mejores inversores ángel son quienes saben lo que se siente estar del otro lado. Eso te da empatía y criterio que ningún MBA otorga.</div>
+      </div>
+
+      <div class="alert alert-key">
+        <span class="alert-icon">◆</span>
+        <span>A los 26 con este historial, tu mayor ventaja no es tener todo claro — es que puedes permitirte no tenerlo. Las marcas más sólidas no nacieron de certeza perfecta. Nacieron de alguien que documentó honestamente el proceso de descubrirse.</span>
+      </div>
+    </div>
+
+    <!-- VALORES -->
+    <div class="page" id="page-valores">
+      <div class="page-header">
+        <div class="page-tag">Fundación</div>
+        <h1 class="page-title">Valores y comportamiento</h1>
+        <p class="page-desc">Tus cinco valores no son aspiracionales — son descriptivos. Lo que ya haces cuando nadie te ve.</p>
+      </div>
+
+      <div class="valor-grid">
+        <div class="valor-card">
+          <div class="valor-name">Lealtad</div>
+          <div class="valor-desc">La moneda más escasa en los negocios creativos. No es ciega — es profunda con quienes se lo ganaron.</div>
+        </div>
+        <div class="valor-card">
+          <div class="valor-name">Network como activo</div>
+          <div class="valor-desc">No coleccionas contactos. Construyes ecosistema. Cada relación debe dejar a la otra persona mejor de lo que la encontraste.</div>
+        </div>
+        <div class="valor-card">
+          <div class="valor-name">Aprendizaje constante</div>
+          <div class="valor-desc">Tu universidad fue el mundo real. Rechazaste el aprendizaje institucional porque encontraste uno más efectivo.</div>
+        </div>
+        <div class="valor-card">
+          <div class="valor-name">Excelencia</div>
+          <div class="valor-desc">No perfeccionismo — el estándar más alto que puedes mantener. Ningún entregable mediocre con tu nombre.</div>
+        </div>
+        <div class="valor-card" style="grid-column: span 2;">
+          <div class="valor-name">Visión de largo plazo</div>
+          <div class="valor-desc">Juegas ajedrez cuando otros juegan damas. El artista emergente de hoy puede ser tu socio más valioso en cinco años. Tratar bien a quienes están subiendo — antes de que lleguen — es este valor en acción.</div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+      <div class="section-heading">Lineamientos por valor — checklist</div>
+
+      <div class="card">
+        <div class="card-title">Lealtad — reglas no negociables</div>
+        <div class="checklist" id="cl-lealtad">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Defiende a tus socios en público.</span> Corrígelos en privado. Nunca expongas tensiones internas frente a terceros.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Menciona a quienes apostaron por ti en fases tempranas.</span> Pública y genuinamente.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Sé el primero en felicitar logros de tu red.</span> No el segundo. No cuando ya todos lo hicieron.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">No cambies de posición por presión social.</span> Mantén tu postura a menos que llegue información nueva.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-lealtad')">Reiniciar checklist</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Network — reglas no negociables</div>
+        <div class="checklist" id="cl-network">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Da antes de pedir, siempre.</span> Cada interacción debe dejar a la otra persona en mejor posición.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Conecta personas entre sí sin estar en el medio.</span> Genera deuda de gratitud doble — de ambas partes.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Cuida profundidad sobre amplitud.</span> 30 relaciones reales valen más que 3,000 seguidores que no te conocen.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Haz visible tu red estratégicamente.</span> Las personas correctas en el contexto correcto comunican más que cualquier bio.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-network')">Reiniciar checklist</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Excelencia — reglas no negociables</div>
+        <div class="checklist" id="cl-excelencia">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Nunca entregues algo mediocre con tu nombre.</span> Ni un post mal hecho, ni un email sin pensar.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">La presentación importa tanto como el contenido.</span> Cómo llegas a una reunión, cómo redactas un mensaje — todo comunica tu estándar.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Sé exigente con tu tiempo.</span> Decir no a proyectos que no están a tu nivel protege la señal de tu marca.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-excelencia')">Reiniciar checklist</button>
+      </div>
+    </div>
+
+    <!-- NARRATIVA -->
+    <div class="page" id="page-narrativa">
+      <div class="page-header">
+        <div class="page-tag">Fundación</div>
+        <h1 class="page-title">Narrativa y frases clave</h1>
+        <p class="page-desc">Si no controlas tu narrativa, alguien más la controla por ti — y probablemente lo hace mal.</p>
+      </div>
+
+      <div class="section-heading">Tus narrativas listas para usar</div>
+
+      <div class="narrative-card">
+        <div class="nar-version">60 segundos — eventos de startups, inversores, pitch nights</div>
+        <div class="nar-text">Empecé en el mundo startup — viví en Palo Alto intentando levantar capital para una empresa de equipos médicos. No funcionó. Aprendí más en ese fracaso que en cualquier otra cosa. Volví a Latinoamérica, traje Founders Live a Bogotá y durante un año movimos el ecosistema emprendedor con pitch nights que entregaron casi 250,000 dólares en premios a startups. En paralelo construí en la economía creativa — management artístico con deals en Warner y UMPG, un festival de trap con dos mil personas en su primera edición. Hoy estoy entrando al mundo angel con algo que pocos inversores tienen: sé exactamente cómo funciona la economía creativa desde adentro. Y ese sector está siendo masivamente subinvertido.</div>
+        <div class="nar-note">El cierre es una tesis, no un dato. Posiciona tu conocimiento como ventaja de inversión.</div>
+      </div>
+
+      <div class="narrative-card">
+        <div class="nar-version">30 segundos — presentaciones generales, redes, perfil</div>
+        <div class="nar-text">Construyo negocios en la intersección de la música, la cultura y el entretenimiento. Dropout que cambió las aulas por las salas donde se toman las decisiones reales. Hoy socio en cuatro ventures — desde management artístico con deals en Warner y UMPG hasta un festival de trap con 2,000 personas en su primera edición.</div>
+      </div>
+
+      <div class="narrative-card">
+        <div class="nar-version">Una línea — bio de Instagram, tarjeta</div>
+        <div class="nar-text">Construyo industrias creativas. Música · management · cultura · entretenimiento.</div>
+      </div>
+
+      <div class="section-divider"></div>
+      <div class="section-heading">Qué decir en situaciones específicas</div>
+
+      <div class="card">
+        <div class="card-title">Cuando te preguntan "¿a qué te dedicas?"</div>
+        <div class="do-dont">
+          <div class="do-box">
+            <div class="box-label do-label">Di esto</div>
+            <div class="box-item do-item"><span class="box-bullet">→</span> "Construyo negocios en música y entretenimiento — desde management artístico hasta festivales y contenido digital."</div>
+          </div>
+          <div class="dont-box">
+            <div class="box-label dont-label">Nunca esto</div>
+            <div class="box-item dont-item"><span class="box-bullet">→</span> "Soy emprendedor" / "Tengo varias cosas" / "Estoy en muchos proyectos"</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Cuando mencionan que no tienes título universitario</div>
+        <div class="do-dont">
+          <div class="do-box">
+            <div class="box-label do-label">Di esto</div>
+            <div class="box-item do-item"><span class="box-bullet">→</span> "Cambié el aula por la industria. Aprendí más en un año de negociaciones reales que en cualquier carrera."</div>
+          </div>
+          <div class="dont-box">
+            <div class="box-label dont-label">Nunca esto</div>
+            <div class="box-item dont-item"><span class="box-bullet">→</span> Disculparte, minimizarlo o sobreexplicarlo. No es un déficit — es parte de tu narrativa.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Cuando publicas un logro propio</div>
+        <div class="do-dont">
+          <div class="do-box">
+            <div class="box-label do-label">Haz esto</div>
+            <div class="box-item do-item"><span class="box-bullet">→</span> Cuenta el proceso + el equipo + lo que aprendiste. El logro en contexto tiene más peso que el logro solo.</div>
+          </div>
+          <div class="dont-box">
+            <div class="box-label dont-label">Nunca esto</div>
+            <div class="box-item dont-item"><span class="box-bullet">→</span> "Orgulloso de anunciar que..." sin contexto ni profundidad. Suena a comunicado de prensa, no a persona real.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠</span>
+        <span><strong>Temas que no tocar:</strong> Política electoral — polariza y no suma a tu posicionamiento. Conflictos con ex-socios o competidores — jamás en público. Ingresos o cifras específicas — solo si son verificables y estratégicamente relevantes.</span>
+      </div>
+    </div>
+
+    <!-- REUNION -->
+    <div class="page" id="page-reunion">
+      <div class="page-header">
+        <div class="page-tag">Interacciones sociales</div>
+        <h1 class="page-title">Reunión de negocios</h1>
+        <p class="page-desc">El contexto donde más se juega tu reputación profesional. Usa este checklist antes de entrar.</p>
+      </div>
+
+      <div class="alert alert-key">
+        <span class="alert-icon">◆</span>
+        <span>Principio rector: define qué quieres que pase después de la reunión <em>antes de entrar</em>. Sin objetivo claro, la reunión muere en cortesías.</span>
+      </div>
+
+      <div class="section-heading">Checklist — antes de la reunión</div>
+      <div class="card">
+        <div class="checklist" id="cl-pre-reunion">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Investigué a la persona</span> — un proyecto reciente, algo que publicó, alguien en común.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Tengo claro mi objetivo</span> — ¿qué quiero que pase después? ¿Segunda reunión? ¿Una introducción? ¿Un acuerdo verbal?</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Preparé dos preguntas buenas</span> — que no se puedan responder con sí o no.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Sé cómo presentarme en 30 segundos</span> — sin improvisar.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-pre-reunion')">Reiniciar</button>
+      </div>
+
+      <div class="section-heading">Checklist — durante la reunión</div>
+      <div class="card">
+        <div class="checklist" id="cl-durante-reunion">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Hablo menos de lo que creo que debo hablar.</span> Dos preguntas buenas valen más que diez minutos de presentación.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Cuando no sé algo, lo digo directamente.</span> "No sé — pero lo descubro y te digo" es más poderoso que improvisar algo hueco.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Escucho para entender, no para responder.</span> La gente recuerda a quien los hizo sentir escuchados.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Dejo espacio para el silencio.</span> No lleno cada pausa. El silencio cómodo comunica seguridad.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-durante-reunion')">Reiniciar</button>
+      </div>
+
+      <div class="section-heading">Checklist — después de la reunión</div>
+      <div class="card">
+        <div class="checklist" id="cl-post-reunion">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Envío seguimiento dentro de las 24 horas</span> — referenciando algo específico de la conversación.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">El mensaje tiene un siguiente paso claro</span> — no "quedo atento", sino "¿tiene sentido hablar la próxima semana?"</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Anoto una cosa que aprendí o me sorprendió</span> — puede ser contenido.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-post-reunion')">Reiniciar</button>
+      </div>
+
+      <div class="script-block">
+        <div class="script-label">Mensaje de seguimiento que funciona</div>
+        <div class="script-text">"[Nombre], gracias por el tiempo hoy. Me quedé pensando en lo que dijiste sobre [algo específico]. Creo que hay algo ahí que vale explorar. ¿Tiene sentido hablar la próxima semana?"</div>
+        <div class="script-note">Específico, sin relleno, con siguiente paso claro. No "fue un placer conocerte, quedo atento."</div>
+      </div>
+    </div>
+
+    <!-- CONCIERTO -->
+    <div class="page" id="page-concierto">
+      <div class="page-header">
+        <div class="page-tag">Interacciones sociales</div>
+        <h1 class="page-title">Conciertos y eventos culturales</h1>
+        <p class="page-desc">El contexto más natural pero más mal aprovechado. Tu único objetivo aquí: que alguien quiera verte de nuevo.</p>
+      </div>
+
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠</span>
+        <span>Este no es un evento de networking disfrazado de concierto. Es un concierto. La gente que intenta hacer negocios en medio de un show lo nota — y le incomoda.</span>
+      </div>
+
+      <div class="section-heading">Checklist — en el evento</div>
+      <div class="card">
+        <div class="checklist" id="cl-concierto">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Llego sabiendo del artista y del contexto.</span> Quien tiene contexto real tiene poder natural de conversación sin vender nada.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Identifico los márgenes del evento</span> — fila del bar, entrada, after — donde ocurren las mejores conversaciones.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Priorizo una conversación buena sobre diez superficiales.</span> Profundidad sobre amplitud.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">No saco el teléfono para mostrar lo que hago</span> — solo si ellos preguntan.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Conecto personas entre sí sin estar en el medio.</span> Es el movimiento más valioso que puedes hacer.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-concierto')">Reiniciar</button>
+      </div>
+
+      <div class="do-dont" style="margin-top:4px">
+        <div class="do-box">
+          <div class="box-label do-label">Funciona</div>
+          <div class="box-item do-item"><span class="box-bullet">→</span> Preguntar cómo conocen al artista</div>
+          <div class="box-item do-item"><span class="box-bullet">→</span> Compartir algo genuino sobre el show</div>
+          <div class="box-item do-item"><span class="box-bullet">→</span> Quedar de tomar café — sin agenda</div>
+        </div>
+        <div class="dont-box">
+          <div class="box-label dont-label">No funciona</div>
+          <div class="box-item dont-item"><span class="box-bullet">→</span> Hablar de tus proyectos sin que pregunten</div>
+          <div class="box-item dont-item"><span class="box-bullet">→</span> Intercambiar LinkedIn en el primer minuto</div>
+          <div class="box-item dont-item"><span class="box-bullet">→</span> Desaparecer cuando no hay oportunidad obvia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STARTUP -->
+    <div class="page" id="page-startup">
+      <div class="page-header">
+        <div class="page-tag">Interacciones sociales</div>
+        <h1 class="page-title">Eventos de startups</h1>
+        <p class="page-desc">Tu terreno más natural después de Founders Live. Llega como alguien que ya construyó esto.</p>
+      </div>
+
+      <div class="section-heading">Checklist — en el evento</div>
+      <div class="card">
+        <div class="checklist" id="cl-startup">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Actúo desde quien soy, no lo declaro.</span> Organizaste Founders Live en Bogotá. Ese estatus se irradia — no se anuncia.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Hablo con los fundadores que presentan, no solo con los inversores.</span> Los fundadores de hoy recuerdan quién los trató bien antes de que fueran exitosos.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Tengo una perspectiva real sobre lo que vi.</span> "¿Qué te pareció?" merece una opinión genuina, aunque sea controvertida.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Conecto personas de mundos distintos.</span> "Deberían hablar — están haciendo algo parecido en música." Costo cero, impacto alto.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Uso mi presentación de 30 segundos</span> — con mi tesis sobre economía creativa subinvertida.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-startup')">Reiniciar</button>
+      </div>
+
+      <div class="script-block">
+        <div class="script-label">Cómo presentarte en un evento de startups</div>
+        <div class="script-text">"Construyo negocios en economía creativa — música, entretenimiento. Y estoy entrando al mundo angel. Me interesa especialmente lo que pasa en la intersección entre cultura y tecnología en Latam, que creo que está siendo masivamente subinvertida."</div>
+        <div class="script-note">Genera curiosidad, abre conversación, posiciona tu tesis. Sin listar cada venture.</div>
+      </div>
+    </div>
+
+    <!-- INFORMAL -->
+    <div class="page" id="page-informal">
+      <div class="page-header">
+        <div class="page-tag">Interacciones sociales</div>
+        <h1 class="page-title">Encuentros informales</h1>
+        <p class="page-desc">El contexto más valioso de todos. El 80% de los deals reales ocurre aquí — no en reuniones formales.</p>
+      </div>
+
+      <div class="alert alert-info">
+        <span class="alert-icon">→</span>
+        <span>Principio rector: las personas hacen negocios con quienes les caen bien y en quienes confían. En ese orden. Primero caer bien. Después generar confianza. Los negocios llegan solos después.</span>
+      </div>
+
+      <div class="section-heading">Checklist — comida, café, after</div>
+      <div class="card">
+        <div class="checklist" id="cl-informal">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Muestro interés genuino en la persona, no en lo que puede darme.</span> Pregunto por sus proyectos, sus retos, su historia — sin agenda visible.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Comparto algo real mío también.</span> Vulnerabilidad selectiva — algo que no salió bien, una duda genuina. No oversharing, pero sin armadura total.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Pago cuando pueda.</span> Pequeño gesto, señal grande. Comunica generosidad y solidez.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">No dirijo la conversación hacia negocios.</span> Si llega ahí solo, bien. Si no, también.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Recuerdo algo específico de la última vez que los vi</span> — y lo menciono. Muestra que me importó la conversación.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-informal')">Reiniciar</button>
+      </div>
+    </div>
+
+    <!-- LINKEDIN -->
+    <div class="page" id="page-linkedin">
+      <div class="page-header">
+        <div class="page-tag">Presencia digital</div>
+        <h1 class="page-title">LinkedIn</h1>
+        <p class="page-desc">Tu cuartel general. Donde construyes reputación profesional. La plataforma más importante para tu posicionamiento.</p>
+      </div>
+
+      <div class="rule-block"><div class="rule-title">Frecuencia</div><div class="rule-body">2–3 veces por semana. Consistencia supera volumen. 3 posts semanales durante 6 meses hacen más que 20 en enero y silencio en febrero.</div></div>
+      <div class="rule-block"><div class="rule-title">Largo</div><div class="rule-body">150–400 palabras. Sin inflar. Sin listas genéricas de 10 puntos. Escribe como hablas en una buena conversación.</div></div>
+      <div class="rule-block"><div class="rule-title">Tono</div><div class="rule-body">Directo, reflexivo, sin corporate speak. Si suenas diferente en redes que en persona, hay desconexión de marca.</div></div>
+
+      <div class="section-divider"></div>
+      <div class="section-heading">Checklist — antes de publicar en LinkedIn</div>
+      <div class="card">
+        <div class="checklist" id="cl-linkedin">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">El primer párrafo retiene sin leer el resto.</span> Si no retiene, reescríbelo.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Hablo desde experiencia real, no desde teoría.</span> "Lo que aprendí" supera a "lo que deberías saber".</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Si es un logro, tiene contexto.</span> Proceso + equipo + aprendizaje. No solo el resultado.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">No usé frases vacías.</span> Sin "orgulloso de anunciar", sin "el viaje ha sido increíble", sin "soy un apasionado de".</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Termina con algo que abre conversación</span> — una pregunta, una perspectiva que invite respuesta.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Respondí comentarios del post anterior</span> antes de publicar el siguiente.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-linkedin')">Reiniciar</button>
+      </div>
+
+      <div class="section-heading">Qué publicar — tus cinco pilares</div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:14px">35% — Detrás de escena del negocio</div>
+        <div class="rule-body" style="margin-bottom:10px">Lo que nadie ve: cómo se negocia un deal, cómo se lanza un festival, qué pasa en una reunión con un sello. No revelar confidencialidad — revelar proceso, decisiones, aprendizajes.</div>
+        <div class="script-block">
+          <div class="script-label">Ejemplos de apertura</div>
+          <div class="script-text">"Lo que aprendí firmando mi primer contrato con un artista" · "Cómo llegamos a 2,000 personas en la primera edición" · "Lo que nadie te dice antes de una reunión con un sello"</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:8px">25% — Perspectiva sobre la industria</div>
+        <div class="rule-body">Tu visión sobre a dónde va la música, el entretenimiento, el angel investing en economía creativa en Latam. Opiniones con criterio, no con miedo.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:8px">20% — Personas de tu ecosistema</div>
+        <div class="rule-body">Tu red visible. No name-dropping — mostrar el ecosistema que construyes. Celebrar logros ajenos genuinamente.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:8px">12% — Aprendizajes y errores</div>
+        <div class="rule-body">Lo que salió mal y qué cambió. Espera 2 semanas para procesarlo, luego publícalo. El fracaso bien narrado es el contenido más compartido que existe.</div>
+      </div>
+      <div class="card">
+        <div class="card-title" style="margin-bottom:8px">8% — Vida y criterio personal</div>
+        <div class="rule-body">Lo que lees, lo que te mueve, cómo piensas fuera del negocio. Selectivo. Humaniza sin sobreexponerte.</div>
+      </div>
+    </div>
+
+    <!-- INSTAGRAM -->
+    <div class="page" id="page-instagram">
+      <div class="page-header">
+        <div class="page-tag">Presencia digital</div>
+        <h1 class="page-title">Instagram</h1>
+        <p class="page-desc">Tu ecosistema visible. No una galería aspiracional — una ventana selectiva al mundo en que operas y a cómo piensas.</p>
+      </div>
+
+      <div class="alert alert-info">
+        <span class="alert-icon">→</span>
+        <span>Para alguien que no es "de fotos" y trabaja desde casa: <strong>menos frecuencia, más intención</strong>. 3–4 Stories por semana cuando haya algo genuino. 2–3 posts en feed por mes. Eso es suficiente.</span>
+      </div>
+
+      <div class="section-heading">Checklist — antes de publicar en Instagram</div>
+      <div class="card">
+        <div class="checklist" id="cl-instagram">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">¿Esto agrega algo a quien me sigue?</span> Si la respuesta es "no estoy seguro", no publiques.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">No es el highlight reel falso.</span> No finjas una vida más aspiracional de la real.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Si es un evento o concierto, agrego contexto.</span> No solo la foto — algo que muestre que entiendo ese mundo.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Si es una reflexión, es genuina.</span> No copio un formato de otro — lo digo como lo diría a alguien en persona.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-instagram')">Reiniciar</button>
+      </div>
+
+      <div class="section-heading">Cuatro tipos de contenido que sí puedes hacer sin forzar</div>
+
+      <div class="card">
+        <div class="card-title">Lo que ves y piensas</div>
+        <div class="card-desc">Una canción que te mueve, un artículo que cambió tu perspectiva, un dato de industria revelador. No necesita foto tuya — necesita tu perspectiva. En Stories, texto simple.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Cuando salgas a algo relevante</div>
+        <div class="card-desc">Un concierto, un evento, una reunión que valga. No cada vez que salgas — solo cuando el contexto sea relevante para tu mundo. Una foto del ambiente + tu lectura del momento.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Tu gente</div>
+        <div class="card-desc">Artistas con quienes trabajas, fundadores que admiras. Mostrar tu red sin postureo — celebrar logros ajenos genuinamente antes de que sean famosos.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Lo que estás descubriendo</div>
+        <div class="card-desc">"Esto me tiene pensando hoy:" — reflexión corta en Stories. No necesita producción. Necesita honestidad. El proceso de descubrirte ya es contenido.</div>
+      </div>
+    </div>
+
+    <!-- TIKTOK -->
+    <div class="page" id="page-tiktok">
+      <div class="page-header">
+        <div class="page-tag">Presencia digital</div>
+        <h1 class="page-title">TikTok</h1>
+        <p class="page-desc">No necesita tu vida interesante. Necesita tu perspectiva interesante. Y esa la tienes desde tu cuarto, en tres minutos.</p>
+      </div>
+
+      <div class="alert alert-warn">
+        <span class="alert-icon">⚠</span>
+        <span>Si en algún momento TikTok se siente como obligación que drena energía, páusalo. Una plataforma que haces con resistencia produce contenido que se nota. LinkedIn primero, siempre.</span>
+      </div>
+
+      <div class="section-heading">Checklist — antes de grabar</div>
+      <div class="card">
+        <div class="checklist" id="cl-tiktok">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">El primer segundo retiene.</span> No empiezo con "hola, hoy quiero hablar sobre..." — empiezo con la idea.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Un video, una idea.</span> No intento cubrir todo — la restricción me obliga a claridad.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">60–90 segundos máximo.</span> Suficiente para profundidad, suficientemente corto para retener.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Hablo desde experiencia real, no desde teoría.</span> "Lo que vi cuando..." supera cualquier consejo genérico.</div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">No necesita producción elaborada.</span> Teléfono, luz natural, autenticidad. Eso supera el video producido para este perfil.</div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-tiktok')">Reiniciar</button>
+      </div>
+
+      <div class="section-heading">Ganchos listos para usar — copia y adapta</div>
+
+      <div class="script-block">
+        <div class="script-label">Sobre tu historia — alto alcance</div>
+        <div class="script-text">"Dejé la universidad, me fui a Palo Alto a levantar capital y fracasé. Aquí lo que aprendí que ningún MBA enseña."</div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-label">Sobre la industria musical</div>
+        <div class="script-text">"Lo que los inversores no entienden todavía sobre el negocio de la música en Latam — y por qué eso es una oportunidad."</div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-label">Sobre emprendimiento real</div>
+        <div class="script-text">"Organicé un festival de trap para 2,000 personas con 0 experiencia previa en eventos. Esto es lo que haría diferente."</div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-label">Sobre ser joven construyendo — muy alto alcance</div>
+        <div class="script-text">"Tengo 26 años y esto es lo que todavía no sé sobre negocios — y cómo lo estoy resolviendo en tiempo real."</div>
+      </div>
+
+      <div class="script-block">
+        <div class="script-label">Sobre angel investing incipiente</div>
+        <div class="script-text">"Estoy evaluando mi primer ticket como angel investor. Esto es lo que estoy aprendiendo del proceso — y lo que me está sorprendiendo."</div>
+      </div>
+    </div>
+
+    <!-- MENTALIDAD -->
+    <div class="page" id="page-mentalidad">
+      <div class="page-header">
+        <div class="page-tag">Mentalidad</div>
+        <h1 class="page-title">Principios y mentalidad</h1>
+        <p class="page-desc">Los cambios de mentalidad que hacen la diferencia entre construir una marca real y simular una.</p>
+      </div>
+
+      <div class="section-heading">Los cinco principios de tu marca</div>
+
+      <div class="card">
+        <div class="card-title">1. Documenta el proceso, no solo los resultados</div>
+        <div class="card-desc">La mayoría publica cuando ya ganó. Tú publicas mientras construyes. Eso crea audiencia que crece contigo — y cuando lleguen los grandes logros, ya tienes gente que vivió el camino.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">2. Habla desde la experiencia, no desde la teoría</div>
+        <div class="card-desc">No necesitas ser el experto máximo para tener algo valioso que decir. Solo necesitas haber estado ahí. "Lo que vi cuando intenté levantar capital en Palo Alto" vale más que cualquier artículo sobre fundraising.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">3. La incertidumbre honesta genera más confianza que la certeza falsa</div>
+        <div class="card-desc">"No sé hacia dónde voy exactamente, pero sé cómo evalúo las oportunidades" es una posición de marca más fuerte que fingir una dirección que no tienes.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">4. Tu edad es una ventaja narrativa, no una excusa</div>
+        <div class="card-desc">26 años con Palo Alto, Warner, Founders Live y un festival en el historial no es normal. No lo minimices. No lo sobrevendas. Nómbralo con naturalidad y deja que los hechos hablen.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">5. Construye en público, decide en privado</div>
+        <div class="card-desc">Comparte el aprendizaje y el proceso. Guarda para ti las tensiones con socios, las negociaciones en curso y las decisiones que todavía no maduran.</div>
+      </div>
+
+      <div class="section-divider"></div>
+      <div class="section-heading">Checklist semanal de marca — cada lunes</div>
+      <div class="card">
+        <div class="checklist" id="cl-semanal">
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Publiqué al menos dos veces en LinkedIn esta semana.</span></div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Respondí comentarios y mensajes de la semana anterior.</span></div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Hice una conexión entre dos personas de mi red sin agenda.</span></div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Anoté al menos una idea de contenido que salió de mi semana real.</span></div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">Hice seguimiento a alguien con quien hablé recientemente.</span></div></div>
+          <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"><span class="check-mark">✓</span></div><div class="check-text"><span class="check-bold">No publiqué nada que no pasara el filtro: ¿esto agrega algo?</span></div></div>
+        </div>
+        <button class="reset-btn" onclick="resetChecklist('cl-semanal')">Reiniciar semana</button>
+      </div>
+
+      <div class="alert alert-key" style="margin-top:24px">
+        <span class="alert-icon">◆</span>
+        <span>La única métrica que importa al principio no es seguidores ni likes — es consistencia. ¿Publicaste esta semana? ¿Y la anterior? El algoritmo y la audiencia llegan después de que tú ya tienes el hábito.</span>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  document.querySelector('.main').scrollTo(0, 0);
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+}
+
+function resetChecklist(id) {
+  document.querySelectorAll('#' + id + ' .check-item').forEach(item => {
+    item.classList.remove('checked');
+  });
+}
+</script>
+</body>
+</html>
